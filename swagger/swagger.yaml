@@ -1,0 +1,46 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a simple API"
+  version: "1.0.0"
+  title: "Simple Inventory API"
+host: "api.example.com"
+basePath: "/shubham721/v1/"
+schemes:
+- "https"
+paths:
+  /write_object:
+    post:
+      tags:
+      - "default"
+      summary: "write object from base path"
+      description: "writes an object from local file to the path \nin bucket specified\n"
+      operationId: "controllers.default_controller.write_object_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "InstanceObject"
+        description: "launching instance"
+        required: false
+        schema:
+          $ref: "#/definitions/InstanceObject"
+      responses:
+        200:
+          description: "successfully write object."
+definitions:
+  InstanceObject:
+    type: "object"
+    required:
+    - "bkt"
+    - "path"
+    - "src"
+    properties:
+      src:
+        type: "string"
+      bkt:
+        type: "string"
+      path:
+        type: "string"
